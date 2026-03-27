@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Linking } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
 import { useState } from "react";
 import Popover from "react-native-popover-view";
 import { useRef } from "react";
@@ -42,11 +42,7 @@ const StyleTooltip = ({ selectedStyle }) => {
     const buttonRef = useRef();
 
     const handlePress = () => {
-        if (selectedStyle === 'Beer') {
-            Linking.openURL(styleInfo[selectedStyle]);
-        } else {
-            setInfoVisible(!infoVisible);
-        }
+        setInfoVisible(!infoVisible);
     };
 
     return (
@@ -54,7 +50,7 @@ const StyleTooltip = ({ selectedStyle }) => {
             <TouchableOpacity ref={buttonRef} style={styles.button} onPress={handlePress}>
                 <Text style={styles.buttonText}>Learn more about this style</Text>
             </TouchableOpacity>
-            {infoVisible && selectedStyle !== 'Beer' && (
+            {infoVisible && (
                 <Popover
                     isVisible={infoVisible}
                     onRequestClose={() => setInfoVisible(false)}

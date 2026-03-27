@@ -1,4 +1,3 @@
-import { registerRootComponent } from 'expo';
 import React, { useEffect, useState } from 'react';
 import { View, Modal, TouchableOpacity, Text } from 'react-native';
 import Title from './components/Title';
@@ -16,7 +15,8 @@ export default function App() {
 
   useEffect(() => {
     if (selectedStyle) {
-      fetch('http://192.168.178.31:3000/studio/style/' + selectedStyle)
+      const apiBaseUrl = process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:3000';
+      fetch(`${apiBaseUrl}/studio/style/${encodeURIComponent(selectedStyle)}`)
         .then(response => response.json())
         .then(data => {
           setStudios(data);
@@ -71,5 +71,3 @@ export default function App() {
     </View>
   );
 }
-
-registerRootComponent(App);

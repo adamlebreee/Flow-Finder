@@ -1,37 +1,19 @@
 import React from 'react';
-import { Select, NativeBaseProvider } from 'native-base';
+import { Picker } from '@react-native-picker/picker';
 
-const stylesList = ['Vinyasa', 'Hatha', 'Aerial', 'Bikram', 'Jivamukti', 'Beer'];
+const stylesList = ['Vinyasa', 'Hatha', 'Ashtanga', 'Aerial', 'Bikram', 'Jivamukti'];
 
 const StyleDropdown = ({ selectedStyle, setSelectedStyle }) => {
     return (
-        <NativeBaseProvider>
-            <Select
-                selectedValue={selectedStyle || 'Select a Style'}
-                minWidth="200"
-                placeholder='Select a Style'
-                onValueChange={(itemValue) => setSelectedStyle(itemValue)}
-                _selectedItem={{
-                    alignItems: "center",
-                    background: "#387043",
-                }}
-                textAlign={'center'}
-                fontSize={20}
-                fontWeight={'bold'}
-                textTransform='uppercase'
-                color={'#4b7e55'}
-            >
-                {stylesList.map((style, index) =>
-                    <Select.Item
-                        key={index}
-                        label={style}
-                        value={style}
-                        _text={textAlign = "center"}
-                    >
-                    </Select.Item>
-                )}
-            </Select>
-        </NativeBaseProvider>
+        <Picker
+            selectedValue={selectedStyle}
+            onValueChange={(itemValue) => setSelectedStyle(itemValue)}
+        >
+            <Picker.Item label="Select a Style" value={null} />
+            {stylesList.map((style) => (
+                <Picker.Item key={style} label={style} value={style} />
+            ))}
+        </Picker>
     );
 };
 
