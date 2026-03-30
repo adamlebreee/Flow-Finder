@@ -1,3 +1,8 @@
-node_modules/
 .expo/
-node_modules
+node_modules/
+
+# env / secrets
+.env
+.env.*
+!/server/.env.example
+server/.env
